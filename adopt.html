@@ -1,0 +1,74 @@
+<html>
+<head>
+    <title>Adopt a Pet</title>
+    <link rel="stylesheet" href="adopt.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to the Paw-sitive Change</h1>
+            <nav>
+                <ul>
+                    <li><a href="1.html" target="_blank">Home</a></li>
+                    <li><a href="pets.html" target="_blank">Pets</a></li>
+                    <li><a href="adopt.html" target="_blank">Adopt Now</a></li>
+                    <li><a href="contact.html" target="_blank">Contact Us</a></li>
+                </ul>
+            </nav>
+        </header>
+        <h1>Adoption Form</h1>
+        <form onsubmit="handleSubmit(event)">
+            <label for="adopterName">Your Name:</label>
+            <input type="text" id="adopterName" required>
+
+            <label for="adopterEmail">Your Email:</label>
+            <input type="email" id="adopterEmail" required>
+
+            <label for="pet">Pet Name:</label>
+            <input type="text" id="pet" required>
+
+            <label for="adopterMessage">Reason for Adopting the Pet:</label>
+            <textarea id="adopterMessage" rows="4" required></textarea>
+
+            <button type="submit" class="button">Submit Adoption Application</button><br><br>
+        </form>
+        <div class="footer">
+            <p>&copy; 2024 Paw-sitive Pet Service. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const name = document.getElementById("adopterName").value;
+            const email = document.getElementById("adopterEmail").value;
+            const message = document.getElementById("adopterMessage").value;
+            const pet = document.getElementById("pet").value;
+
+            // Prepare the content for the new confirmation page
+            const confirmationContent = `
+                <html>
+                <head>
+                    <title>Adoption Confirmation</title>
+                </head>
+                <body>
+                    <h2>Your Adoption Application</h2>
+                    <p><strong>Name:</strong> ${name}</p>
+                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Message:</strong> ${message}</p>
+                    <p><strong>Pet:</strong> ${pet}</p>
+                    <h4>You can also visit our Adoption Centre, to see the pets and adopt as per your wish.</h4>
+                    <h3>Thanks for filling out the form; our team will contact you soon.</h3>
+                </body>
+                </html>
+            `;
+
+            // Open a new window and write the confirmation content
+            const newWindow = window.open();
+            newWindow.document.write(confirmationContent);
+            newWindow.document.close(); // Close the document to finish loading
+        }
+    </script>
+</body>
+</html>
